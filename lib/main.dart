@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Covid initialInfo = Covid('0', '0', '0', DateTime.now(), 0.5, 0.5);
+    Covid initialInfo = Covid('0', '0', '0', DateTime.now().toString(), '1', '1');
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       supportedLocales: const [
@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BlocProvider(
-          create: (context) => ItemBloc(initialInfo),
+      home: BlocProvider<ItemBloc>(
+          create: (context) => ItemBloc(initialInfo)..add(Country('Ukraine')),
           child: const MyHomePage(title: 'Covid19')),
     );
   }
@@ -142,7 +142,7 @@ class MyHomePage extends StatelessWidget {
                                 CircularPercentIndicator(
                                   radius: 105.0,
                                   lineWidth: 7.0,
-                                  percent: todayInfo.affectedInPercents,
+                                  percent: double.parse(todayInfo.affectedInPercents),
                                   center: const Text('Affected',
                                       style: TextStyle(color: Colors.black)),
                                   progressColor: Colors.lightGreen,
@@ -150,7 +150,7 @@ class MyHomePage extends StatelessWidget {
                                 CircularPercentIndicator(
                                   radius: 105.0,
                                   lineWidth: 7.0,
-                                  percent: todayInfo.vaccinatedInPercents,
+                                  percent: double.parse(todayInfo.vaccinatedInPercents),
                                   center: const Text('Vaccinated',
                                       style: TextStyle(color: Colors.black)),
                                   progressColor: Colors.yellow,

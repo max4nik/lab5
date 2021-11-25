@@ -15,7 +15,7 @@ class Country {
 
 class ItemBloc extends Bloc<Country, Covid> {
   ItemBloc(Covid initialState) : super(initialState);
-  Covid todayInfo = Covid('0', '0', '0', DateTime.now(), 0.5, 0.5);
+  Covid todayInfo = Covid('0', '0', '0', DateTime.now().toString(), '1', '1');
 
   @override
   Stream<Covid> mapEventToState(Country event) async* {

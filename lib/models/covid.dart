@@ -1,16 +1,25 @@
 class Covid {
   // dynamic values are needed for "NaN" value displaying when info for country doesn't exist
-  dynamic active;
-  dynamic todayDeaths;
-  dynamic todayRecovered;
-  dynamic lastUpdated;
-  dynamic affectedInPercents;
-  dynamic vaccinatedInPercents;
+  String active;
+  String todayDeaths;
+  String todayRecovered;
+  String lastUpdated;
+  String affectedInPercents;
+  String vaccinatedInPercents;
 
   Covid(this.active, this.todayDeaths, this.todayRecovered, this.lastUpdated,
       this.affectedInPercents, this.vaccinatedInPercents);
 
   factory Covid.fromJson(dynamic json) {
+    if (json['active'] == "NaN"){
+      return Covid(
+          json['active'].toString(),
+          json['todayDeaths'].toString(),
+          json['todayRecovered'].toString(),
+          json['updated'].toString(),
+          '1',
+          '1');
+    }
     DateTime updated =
         DateTime.fromMillisecondsSinceEpoch(json['updated']);
     double affectedInPercents = (1 / json['oneCasePerPeople']);
@@ -22,8 +31,8 @@ class Covid {
         json['active'].toString(),
         json['todayDeaths'].toString(),
         json['todayRecovered'].toString(),
-        updated,
-        affectedInPercents,
-        vaccinatedInPercents);
+        updated.toString(),
+        affectedInPercents.toString(),
+        vaccinatedInPercents.toString());
   }
 }
