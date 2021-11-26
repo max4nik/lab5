@@ -161,12 +161,7 @@ class MyHomePage extends StatelessWidget {
                       const SizedBox(height: 20),
                       Row(
                         children: [
-                          Text(
-                            "Last updated: ${todayInfo.lastUpdated}",
-                            style: const TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
+                          lastUpdated(todayInfo.lastUpdated),
                           const Spacer(),
                         ],
                       ),
@@ -179,7 +174,14 @@ class MyHomePage extends StatelessWidget {
           );
         }));
   }
-
+  Widget lastUpdated(lastUpdated) {
+    return Text(
+      lastUpdated != '0' ? "Last updated: $lastUpdated" : '',
+      style: const TextStyle(
+        color: Colors.white,
+      ),
+    );
+  }
   Widget covidInfo(icon, color, number, title) {
     return Column(
       children: [
